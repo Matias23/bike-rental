@@ -4,3 +4,6 @@ pluginManagement {
     }
 }
 rootProject.name = 'rental'
+
+include "rental-contract"
+include "rental-service"
