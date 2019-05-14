@@ -9,10 +9,3 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/rental
-
-#  kafka:
-#    bootstrap-servers: ${kafka.bootstrap.servers}
-#    producer:
-#      enabled: true
-#
-#kafka.bootstrap.servers: http://127.0.0.1:9092

@@ -4,6 +4,34 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'pmd'
+
+pmd {
+    ruleSets = [
+            "basic",
+            "braces",
+            "naming",
+            "android",
+            "clone",
+            "codesize",
+            "controversial",
+            "design",
+            "finalizers",
+            "imports",
+            "j2ee",
+            "javabeans",
+            "junit",
+            "logging-jakarta-commons",
+            "logging-java",
+            "migrating",
+            "optimizations",
+            "strictexception",
+            "strings",
+            "sunsecure",
+            "typeresolution",
+            "unusedcode"
+    ]
+}
 
 group = 'com.matias'
 
@@ -26,11 +54,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.modelmapper:modelmapper:2.1.0'
-    compile 'org.apache.kafka:kafka-clients:0.9.0.0'
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-/*    compile "com.fasterxml.jackson.core:jackson-core"
-    compile "com.fasterxml.jackson.core:jackson-annotations"
-    compile "com.fasterxml.jackson.core:jackson-databind"*/
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
     annotationProcessor 'org.projectlombok:lombok'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

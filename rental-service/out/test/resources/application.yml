@@ -5,10 +5,3 @@ spring:
   data:
     mongodb:
       uri: mongodb://192.168.99.100:27017/rental
-
-## As seen from Docker
-#spring:
-#  profiles: build
-#  data:
-#    mongodb:
-#      uri: mongodb://db:27017/rental

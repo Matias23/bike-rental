@@ -1,8 +1,6 @@
 package com.matias.rental.controller;
 
-import com.matias.rental.dto.FamilyRental;
 import com.matias.rental.dto.Rental;
-import com.matias.rental.dto.request.CreateFamilyRentalRequest;
 import com.matias.rental.dto.request.CreateRentalRequest;
 import com.matias.rental.service.RentalService;
 import io.swagger.annotations.Api;
@@ -31,63 +29,34 @@ public class RentalController {
 
     private final RentalService service;
 
-    @ApiOperation("Stores a single rental")
+    @ApiOperation("Stores a rental")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Success"),
             @ApiResponse(code = 409, message = "Rental for given request already exists"),
             @ApiResponse(code = 500, message = "Internal server error")
     })
-    @PostMapping("/basic")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Rental postSingleRental(
-            @RequestBody @Validated CreateRentalRequest createRentalRequest) {
-        log.info("Received new request for saving bike rental: {}", createRentalRequest);
+    public Rental postRental(
+            @RequestBody @Validated CreateRentalRequest createRequest) {
+        log.info("Received new request for saving bike rental: {}", createRequest);
 
-        return service.postSingleRental(createRentalRequest);
+        return service.postRental(createRequest);
     }
 
-    @ApiOperation("Gets a single rental")
+    @ApiOperation("Gets a rental")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 404, message = "Rental for given id not exists"),
             @ApiResponse(code = 500, message = "Internal server error")
     })
-    @GetMapping("/basic/{rentalId}")
+    @GetMapping("/{rentalId}")
     @ResponseStatus(HttpStatus.OK)
-    public Rental getSingleRental(
+    public Rental getRental(
             @ApiParam(value = "Rental id", required = true) @PathVariable String rentalId) {
-        log.info("Received new request for getting single bike rental with id: {}", rentalId);
+        log.info("Received new request for getting bike rental with id: {}", rentalId);
 
-        return service.getSingleRental(rentalId);
+        return service.getRental(rentalId);
     }
 
-    @ApiOperation("Stores a family rental")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Success"),
-            @ApiResponse(code = 409, message = "Rental for given request already exists"),
-            @ApiResponse(code = 500, message = "Internal server error")
-    })
-    @PostMapping("/family")
-    @ResponseStatus(HttpStatus.CREATED)
-    public FamilyRental postFamilyRental(
-            @RequestBody @Validated CreateFamilyRentalRequest createFamilyRentalRequest) {
-        log.info("Received new request for saving family bike rental: {}", createFamilyRentalRequest);
-
-        return service.postFamilyRental(createFamilyRentalRequest);
-    }
-
-    @ApiOperation("Gets a family rental")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 404, message = "Family rental for given id not exists"),
-            @ApiResponse(code = 500, message = "Internal server error")
-    })
-    @GetMapping("/family/{rentalId}")
-    @ResponseStatus(HttpStatus.OK)
-    public Rental getSingleRental(
-            @ApiParam(value = "Rental id", required = true) @PathVariable String rentalId) {
-        log.info("Received new request for getting single bike rental with id: {}", rentalId);
-
-        return service.getSingleRental(rentalId);
-    }
 }

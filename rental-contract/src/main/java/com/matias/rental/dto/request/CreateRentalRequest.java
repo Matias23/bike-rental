@@ -5,32 +5,37 @@ import com.matias.rental.dto.constant.RentalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateRentalRequest extends BasicCreateRequest{
+@Builder
+public class CreateRentalRequest {
 
-    @NotNull(message = ErrorMessages.REQUIRED_AMOUNT)
-    @Min(value = 0, message = ErrorMessages.LOW_AMOUNT)
+    @NotNull(message = "type is required")
+    protected RentalType type;
+
+    @Min(value = 1, message = ErrorMessages.LOW_AMOUNT)
     private Integer amount;
 
-    @AssertTrue(message = ErrorMessages.NOT_FAMILY_RENTAL_TYPE)
-    public boolean isValid() {
-        return type == null || !type.equals(RentalType.FAMILY);
+    @Size(min = 3, max = 5, message = ErrorMessages.RENTALS_SIZE)
+    private List<CreateRentalRequest> rentals;
+
+    @AssertTrue(message = ErrorMessages.INVALID_RENTAL_VALUES)
+    public boolean isValidSingleRental() {
+        return type == null || type == RentalType.FAMILY || (amount != null && rentals == null);
     }
 
-    @Builder(builderMethodName = "createRentalRequest")
-    public CreateRentalRequest(RentalType type, Integer amount) {
-        super(type);
-        this.amount = amount;
+    @AssertTrue(message = ErrorMessages.INVALID_FAMILY_VALUES)
+    public boolean isValidFamilyRental() {
+        return type == null || !type.equals(RentalType.FAMILY) || (amount == null && rentals != null);
     }
 
 }

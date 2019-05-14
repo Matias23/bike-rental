@@ -1,10 +1,8 @@
 package com.matias.rental.controller;
 
-import com.matias.rental.dto.FamilyRental;
 import com.matias.rental.dto.Rental;
 import com.matias.rental.dto.constant.ErrorMessages;
 import com.matias.rental.dto.constant.RentalType;
-import com.matias.rental.dto.request.CreateFamilyRentalRequest;
 import com.matias.rental.dto.request.CreateRentalRequest;
 import com.matias.rental.service.repository.RentalRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -45,14 +43,14 @@ public class RentalControllerTest {
         repository.deleteAll();
     }
 
-    private ResponseEntity<Rental> postSingleRental(CreateRentalRequest createRentalRequest) {
-        return restTemplate.postForEntity(String.format("http://localhost:%s/v1/rentals/basic", port),
+    private ResponseEntity<Rental> postRental(CreateRentalRequest createRentalRequest) {
+        return restTemplate.postForEntity(String.format("http://localhost:%s/v1/rentals", port),
                 createRentalRequest, Rental.class);
     }
 
-    private ResponseEntity<FamilyRental> postFamilyRental(CreateFamilyRentalRequest createFamilyRentalRequest) {
-        return restTemplate.postForEntity(String.format("http://localhost:%s/v1/rentals/family", port),
-                createFamilyRentalRequest, FamilyRental.class);
+    private ResponseEntity<Rental> getRental(String rentalId) {
+        return restTemplate.getForEntity(String.format("http://localhost:%s/v1/rentals/{rentalId}", port),
+                Rental.class, rentalId);
     }
 
     @Test
@@ -63,7 +61,7 @@ public class RentalControllerTest {
     @Test
     public void createRental() {
         CreateRentalRequest rentalRequest = buildDummyRentalRequest();
-        ResponseEntity<Rental> response = postSingleRental(rentalRequest);
+        ResponseEntity<Rental> response = postRental(rentalRequest);
 
         Assert.assertEquals("Response status doesn't match", HttpStatus.CREATED, response.getStatusCode());
     }
@@ -71,105 +69,174 @@ public class RentalControllerTest {
     @Test
     public void createRentalNullValuesRequest() {
         CreateRentalRequest rentalRequest = CreateRentalRequest
-                .createRentalRequest()
+                .builder()
                 .build();
         try {
-            postSingleRental(rentalRequest);
+            postRental(rentalRequest);
             Assert.fail("Did not throw");
         } catch (HttpClientErrorException e) {
             Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
                     HttpStatus.BAD_REQUEST, e.getStatusCode());
-            Assert.assertTrue("Amount is required and was not present",
-                    e.getResponseBodyAsString().contains(ErrorMessages.REQUIRED_AMOUNT));
             Assert.assertTrue("Type is required and was not present",
                     e.getResponseBodyAsString().contains(ErrorMessages.REQUIRED_TYPE));
         }
     }
 
     @Test
-    public void createRentalInvalidValuesRequest() {
+    public void createRentalLowAmountRequest() {
         CreateRentalRequest rentalRequest = CreateRentalRequest
-                .createRentalRequest()
-                .type(RentalType.FAMILY)
+                .builder()
+                .type(RentalType.DAILY)
                 .amount(-2)
                 .build();
         try {
-            postSingleRental(rentalRequest);
+            postRental(rentalRequest);
             Assert.fail("Did not throw");
         } catch (HttpClientErrorException e) {
             Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
                     HttpStatus.BAD_REQUEST, e.getStatusCode());
             Assert.assertTrue("Amount was too low",
                     e.getResponseBodyAsString().contains(ErrorMessages.LOW_AMOUNT));
-            Assert.assertTrue("Type was invalid",
-                    e.getResponseBodyAsString().contains(ErrorMessages.NOT_FAMILY_RENTAL_TYPE));
+        }
+    }
+
+    @Test
+    public void createRentalNoAmountRequest() {
+        CreateRentalRequest rentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.DAILY)
+                .build();
+        try {
+            postRental(rentalRequest);
+            Assert.fail("Did not throw");
+        } catch (HttpClientErrorException e) {
+            Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
+                    HttpStatus.BAD_REQUEST, e.getStatusCode());
+            Assert.assertTrue("Amount was not present",
+                    e.getResponseBodyAsString().contains(ErrorMessages.INVALID_RENTAL_VALUES));
+        }
+    }
+
+    @Test
+    public void createSingleRentalWithRentalsIncluded() {
+        CreateRentalRequest rentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.DAILY)
+                .amount(3)
+                .rentals(buildRentalRequestList())
+                .build();
+        try {
+            postRental(rentalRequest);
+            Assert.fail("Did not throw");
+        } catch (HttpClientErrorException e) {
+            Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
+                    HttpStatus.BAD_REQUEST, e.getStatusCode());
+            Assert.assertTrue("Rental list should not be present",
+                    e.getResponseBodyAsString().contains(ErrorMessages.INVALID_RENTAL_VALUES));
         }
     }
 
     @Test
     public void createFamilyRental() {
-        CreateFamilyRentalRequest familyRentalRequest = buildDummyFamilyRentalRequest();
-        ResponseEntity<FamilyRental> response = postFamilyRental(familyRentalRequest);
+        CreateRentalRequest familyRentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.FAMILY)
+                .rentals(buildRentalRequestList())
+                .build();
+        ResponseEntity<Rental> response = postRental(familyRentalRequest);
 
         Assert.assertEquals("Response status doesn't match", HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    public void createFamilyRentalNullValuesRequest() {
-        CreateFamilyRentalRequest familyRentalRequest = CreateFamilyRentalRequest
-                .createFamilyRentalRequestBuilder()
+    public void createFamilyRentalShortList() {
+        CreateRentalRequest rentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.FAMILY)
+                .rentals(new ArrayList<>())
                 .build();
         try {
-            postFamilyRental(familyRentalRequest);
+            postRental(rentalRequest);
             Assert.fail("Did not throw");
         } catch (HttpClientErrorException e) {
             Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
                     HttpStatus.BAD_REQUEST, e.getStatusCode());
-            Assert.assertTrue("Rental is required and was not present",
-                    e.getResponseBodyAsString().contains(ErrorMessages.REQUIRED_RENTALS));
-            Assert.assertTrue("Type is required and was not present",
-                    e.getResponseBodyAsString().contains(ErrorMessages.REQUIRED_TYPE));
+            Assert.assertTrue("Rentals list was too short",
+                    e.getResponseBodyAsString().contains(ErrorMessages.RENTALS_SIZE));
         }
     }
 
     @Test
-    public void createFamilyRentalInvalidValuesRequest() {
-        CreateFamilyRentalRequest familyRentalRequest = CreateFamilyRentalRequest
-                .createFamilyRentalRequestBuilder()
-                .type(RentalType.DAILY)
-                .rentals(new ArrayList<>())
+    public void createFamilyRentalWithNoRentalsList() {
+        CreateRentalRequest rentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.FAMILY)
                 .build();
         try {
-            postFamilyRental(familyRentalRequest);
+            postRental(rentalRequest);
             Assert.fail("Did not throw");
         } catch (HttpClientErrorException e) {
             Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
                     HttpStatus.BAD_REQUEST, e.getStatusCode());
-            Assert.assertTrue("Rentals was too short",
-                    e.getResponseBodyAsString().contains(ErrorMessages.RENTALS_SIZE));
-            Assert.assertTrue("Type was invalid",
-                    e.getResponseBodyAsString().contains(ErrorMessages.FAMILY_RENTAL_TYPE));
+            Assert.assertTrue("Rentals was not present",
+                    e.getResponseBodyAsString().contains(ErrorMessages.INVALID_FAMILY_VALUES));
         }
     }
 
-    public static CreateRentalRequest buildDummyRentalRequest() {
+    @Test
+    public void createFamilyRentalWithAmountIncluded() {
+        CreateRentalRequest rentalRequest = CreateRentalRequest
+                .builder()
+                .type(RentalType.FAMILY)
+                .amount(3)
+                .rentals(buildRentalRequestList())
+                .build();
+        try {
+            postRental(rentalRequest);
+            Assert.fail("Did not throw");
+        } catch (HttpClientErrorException e) {
+            Assert.assertEquals(String.format("Custom constrain validation: %s", "Response status don't match"),
+                    HttpStatus.BAD_REQUEST, e.getStatusCode());
+            Assert.assertTrue("Amount should not be present",
+                    e.getResponseBodyAsString().contains(ErrorMessages.INVALID_FAMILY_VALUES));
+        }
+    }
+
+    @Test
+    public void getRental() {
+        CreateRentalRequest rentalRequest = buildDummyRentalRequest();
+        Rental rental = postRental(rentalRequest).getBody();
+
+        ResponseEntity<Rental> getResponse =  getRental(rental.getRentalId());
+        Assert.assertEquals("Response status doesn't match", HttpStatus.OK, getResponse.getStatusCode());
+        Assert.assertEquals("Rental amount doesn't match",
+                rentalRequest.getAmount(), getResponse.getBody().getAmount());
+    }
+
+    @Test
+    public void getRentalNotFound() {
+        try {
+            getRental("invalid_id");
+            Assert.fail("Did not throw");
+        } catch (HttpClientErrorException e) {
+            Assert.assertEquals("Response status doesn't match", HttpStatus.NOT_FOUND, e.getStatusCode());
+        }
+    }
+
+    private CreateRentalRequest buildDummyRentalRequest() {
         return CreateRentalRequest
-                .createRentalRequest()
+                .builder()
                 .type(RentalType.DAILY)
                 .amount(2)
                 .build();
     }
 
-    public static CreateFamilyRentalRequest buildDummyFamilyRentalRequest() {
+    private List<CreateRentalRequest> buildRentalRequestList() {
         CreateRentalRequest singleRental = buildDummyRentalRequest();
         List<CreateRentalRequest> rentals = new ArrayList<>();
         rentals.add(singleRental);
         rentals.add(singleRental);
         rentals.add(singleRental);
-        return CreateFamilyRentalRequest
-                .createFamilyRentalRequestBuilder()
-                .type(RentalType.FAMILY)
-                .rentals(rentals)
-                .build();
+        return rentals;
     }
 }
