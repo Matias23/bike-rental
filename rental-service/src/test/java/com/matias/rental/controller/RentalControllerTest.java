@@ -6,12 +6,14 @@ import com.matias.rental.dto.constant.RentalType;
 import com.matias.rental.dto.request.CreateRentalRequest;
 import com.matias.rental.service.repository.RentalRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @Slf4j
@@ -38,9 +44,13 @@ public class RentalControllerTest {
     @Autowired
     protected RentalRepository repository;
 
+    @MockBean
+    private KafkaProducer<String, Rental> rentalMessageProducer;
+
     @Before
     public void setUp() {
         repository.deleteAll();
+        doReturn(null).when(rentalMessageProducer).send(any());
     }
 
     private ResponseEntity<Rental> postRental(CreateRentalRequest createRentalRequest) {
@@ -64,6 +74,7 @@ public class RentalControllerTest {
         ResponseEntity<Rental> response = postRental(rentalRequest);
 
         Assert.assertEquals("Response status doesn't match", HttpStatus.CREATED, response.getStatusCode());
+        verify(rentalMessageProducer, times(1)).send(any());
     }
 
     @Test
