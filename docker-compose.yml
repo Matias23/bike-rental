@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  rental-db:
+    image: mongo:3.4.9
+    command: mongod
+    ports:
+    - "27017:27017"
