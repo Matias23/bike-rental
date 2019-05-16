@@ -1,8 +1,9 @@
-apply plugin: 'idea'
-
-group = 'com.matias'
-version = '0.0.1-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+plugins {
+    id 'idea'
+    id 'java'
 }
+
+group 'com.intive'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8

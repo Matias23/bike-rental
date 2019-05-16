@@ -1,6 +1,6 @@
 security.basic.enabled: false
 
-logging.level.com.matias.rental: DEBUG
+logging.level.com.intive.rental: DEBUG
 
 server:
   port: 9000
