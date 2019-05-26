@@ -57,6 +57,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':rental-contract')
     compile 'org.projectlombok:lombok:1.18.8'
     compile group: 'org.springframework', name: 'spring-web', version: '5.1.5.RELEASE'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.5.RELEASE'
@@ -113,7 +114,7 @@ jacocoTestCoverageVerification {
                     '**/*Entity.class',
                     '**/*Application.class',
                     '**/domain/*',
-                    '**/dto/*'
+                    '**/com.intive.rental.dto/*'
             ])
         }))
     }

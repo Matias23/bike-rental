@@ -1,3 +1,5 @@
 rootProject.name = 'rental'
 
 include "rental-service"
+include 'rental-contract'
+
