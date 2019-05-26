@@ -4,32 +4,32 @@ import com.intive.rental.dto.constant.RentalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
-
-<span class="pc bnc" id="L14" title="All 38 branches missed.">@Data</span>
-<span class="nc" id="L15">@Builder</span>
+<span class="fc" id="L13">@Data</span>
+<span class="nc bnc" id="L14" title="All 24 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="nc" id="L15">@ToString(callSuper = true)</span>
 <span class="nc" id="L16">@AllArgsConstructor</span>
 <span class="fc" id="L17">@NoArgsConstructor</span>
-@Document(collection = &quot;rentals&quot;)
-public class RentalEntity {
-
-    @Id
-    @Field(value = &quot;rental_id&quot;)
-<span class="fc" id="L23">    protected String rentalId;</span>
-
-    @Field(value = &quot;type&quot;)
-<span class="fc" id="L26">    protected RentalType type;</span>
+@Document(collection = &quot;single_rentals&quot;)
+public class RentalEntity extends BasicRentalEntity{
 
     @Field(value = &quot;amount&quot;)
-<span class="fc" id="L29">    private Integer amount;</span>
+<span class="fc" id="L22">    private Integer amount;</span>
 
-    @Field(value = &quot;included_rentals&quot;)
-<span class="fc" id="L32">    private List&lt;RentalEntity&gt; rentals;</span>
+    @Field(value = &quot;rental_type&quot;)
+<span class="fc" id="L25">    private RentalType rentalType;</span>
+
+<span class="nc" id="L27">    @Builder</span>
+    public RentalEntity(String rentalId, Integer amount, RentalType rentalType) {
+<span class="nc" id="L29">        super(rentalId);</span>
+<span class="nc" id="L30">        this.amount = amount;</span>
+<span class="nc" id="L31">        this.rentalType = rentalType;</span>
+<span class="nc" id="L32">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

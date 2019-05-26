@@ -67,6 +67,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb:2.1.4.RELEASE')
     compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
     compile 'org.apache.kafka:kafka-clients:0.9.0.0'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     testCompile('org.springframework.boot:spring-boot-starter-test:2.1.4.RELEASE')
 }

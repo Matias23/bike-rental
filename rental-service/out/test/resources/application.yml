@@ -5,3 +5,19 @@ spring:
   data:
     mongodb:
       uri: mongodb://192.168.99.100:27017/rental
+  kafka:
+    bootstrap-servers: http://127.0.0.1:9092
+    producer:
+      enabled: true
+
+baseUrl: http://localhost:%s/v1/rentals
+
+message:
+  responseStatus: Response status doesn't match
+  notThrown: Did not throw
+
+charge:
+  family: 0.3
+  hourly: 5
+  daily: 20
+  weekly: 60

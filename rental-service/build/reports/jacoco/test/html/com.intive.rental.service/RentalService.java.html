@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RentalService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rental-service</a> &gt; <a href="index.source.html" class="el_package">com.intive.rental.service</a> &gt; <span class="el_source">RentalService.java</span></div><h1>RentalService.java</h1><pre class="source lang-java linenums">package com.intive.rental.service;
 
-import com.intive.rental.dto.Rental;
+import com.intive.rental.dto.FamilyRental;
+import com.intive.rental.dto.SimpleRental;
+import com.intive.rental.dto.request.CreateFamilyRentalRequest;
+import com.intive.rental.dto.request.CreateSimpleRentalRequest;
+import com.intive.rental.service.domain.FamilyRentalEntity;
 import com.intive.rental.service.domain.RentalEntity;
-import com.intive.rental.service.repository.RentalRepository;
-import com.intive.rental.dto.request.CreateRentalRequest;
 import com.intive.rental.service.mapper.RentalMapper;
+import com.intive.rental.service.repository.FamilyRentalRepository;
+import com.intive.rental.service.repository.SimpleRentalRepository;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,35 +19,70 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-<span class="fc" id="L18">public class RentalService {</span>
+<span class="fc" id="L22">public class RentalService {</span>
 
     @Autowired
-    private RentalRepository repository;
+    private SimpleRentalRepository simpleRentalRepository;
 
     @Autowired
-    private KafkaProducer&lt;String, Rental&gt; createdRentalMessageProducer;
+    private FamilyRentalRepository familyRentalRepository;
 
-    public Rental postRental(CreateRentalRequest createRequest) {
-<span class="fc" id="L27">        RentalEntity rental = RentalMapper.dtoToEntity(createRequest);</span>
-<span class="fc" id="L28">        RentalEntity savedRental = repository.save(rental);</span>
-<span class="fc" id="L29">        sendKafkaMessage(rental);</span>
-<span class="fc" id="L30">        return RentalMapper.entityToDto(savedRental);</span>
+    @Autowired
+    private KafkaProducer&lt;String, SimpleRental&gt; createdSimpleRentalMessageProducer;
+
+    @Autowired
+    private KafkaProducer&lt;String, FamilyRental&gt; createdFamilyRentalMessageProducer;
+
+    @Autowired
+    private ChargingStrategy chargingStrategy;
+
+    public SimpleRental postSimpleRental(CreateSimpleRentalRequest createRequest) {
+<span class="fc" id="L40">        RentalEntity rentalEntity = RentalMapper.dtoToEntity(createRequest);</span>
+<span class="fc" id="L41">        RentalEntity savedRental = simpleRentalRepository.save(rentalEntity);</span>
+<span class="fc" id="L42">        SimpleRental rental = RentalMapper.entityToDto(savedRental);</span>
+<span class="fc" id="L43">        rental.setCost(chargingStrategy.getCost(rental));</span>
+<span class="fc" id="L44">        sendKafkaMessage(rental);</span>
+<span class="fc" id="L45">        return rental;</span>
     }
 
-    public Rental getRental(String rentalId) {
-<span class="fc" id="L34">        Optional&lt;RentalEntity&gt; rental =  repository.findById(rentalId);</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (!rental.isPresent()) {</span>
-<span class="fc" id="L36">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;rental not found&quot;);</span>
+    public FamilyRental postFamilyRental(CreateFamilyRentalRequest createRequest) {
+<span class="fc" id="L49">        FamilyRentalEntity rentalEntity = RentalMapper.dtoToEntity(createRequest);</span>
+<span class="fc" id="L50">        FamilyRentalEntity savedRental = familyRentalRepository.save(rentalEntity);</span>
+<span class="fc" id="L51">        FamilyRental rental = RentalMapper.entityToDto(savedRental);</span>
+<span class="fc" id="L52">        rental.setCost(chargingStrategy.getCost(rental));</span>
+<span class="fc" id="L53">        sendKafkaMessage(rental);</span>
+<span class="fc" id="L54">        return rental;</span>
+    }
+
+    private void sendKafkaMessage(SimpleRental rental) {
+<span class="fc" id="L58">        ProducerRecord&lt;String, SimpleRental&gt; record =</span>
+                new ProducerRecord&lt;&gt;(&quot;created-simple-rental-message&quot;, rental);
+<span class="fc" id="L60">        createdSimpleRentalMessageProducer.send(record);</span>
+<span class="fc" id="L61">    }</span>
+
+    private void sendKafkaMessage(FamilyRental rental) {
+<span class="fc" id="L64">        ProducerRecord&lt;String, FamilyRental&gt; record =</span>
+                new ProducerRecord&lt;&gt;(&quot;created-family-rental-message&quot;, rental);
+<span class="fc" id="L66">        createdFamilyRentalMessageProducer.send(record);</span>
+<span class="fc" id="L67">    }</span>
+
+    public SimpleRental getRental(String rentalId) {
+<span class="fc" id="L70">        Optional&lt;RentalEntity&gt; singleRental =  simpleRentalRepository.findById(rentalId);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (singleRental.isPresent()) {</span>
+<span class="fc" id="L72">            return RentalMapper.entityToDto(singleRental.get());</span>
+        } else {
+<span class="fc" id="L74">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;rental not found&quot;);</span>
         }
-<span class="fc" id="L38">        return RentalMapper.entityToDto(rental.get());</span>
     }
 
-    private void sendKafkaMessage(RentalEntity entity) {
-<span class="fc" id="L42">        Rental rental = RentalMapper.entityToDto(entity);</span>
-<span class="fc" id="L43">        ProducerRecord&lt;String, Rental&gt; record =</span>
-                new ProducerRecord&lt;&gt;(&quot;created-rental-message&quot;, rental);
-<span class="fc" id="L45">        createdRentalMessageProducer.send(record);</span>
-<span class="fc" id="L46">    }</span>
+    public FamilyRental getFamilyRental(String rentalId) {
+<span class="fc" id="L79">        Optional&lt;FamilyRentalEntity&gt; familyRental =  familyRentalRepository.findById(rentalId);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (familyRental.isPresent()) {</span>
+<span class="fc" id="L81">            return RentalMapper.entityToDto(familyRental.get());</span>
+        } else {
+<span class="fc" id="L83">            throw new ResponseStatusException(HttpStatus.NOT_FOUND, &quot;family rental not found&quot;);</span>
+        }
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
