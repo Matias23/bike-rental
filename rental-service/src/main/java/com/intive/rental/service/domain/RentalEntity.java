@@ -4,31 +4,31 @@ import com.intive.rental.dto.constant.RentalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
-
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "rentals")
-public class RentalEntity {
-
-    @Id
-    @Field(value = "rental_id")
-    protected String rentalId;
-
-    @Field(value = "type")
-    protected RentalType type;
+@Document(collection = "single_rentals")
+public class RentalEntity extends BasicRentalEntity{
 
     @Field(value = "amount")
     private Integer amount;
 
-    @Field(value = "included_rentals")
-    private List<RentalEntity> rentals;
+    @Field(value = "rental_type")
+    private RentalType rentalType;
+
+    @Builder
+    public RentalEntity(String rentalId, Integer amount, RentalType rentalType) {
+        super(rentalId);
+        this.amount = amount;
+        this.rentalType = rentalType;
+    }
 
 }

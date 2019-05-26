@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RentalApplicationConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rental-service</a> &gt; <a href="index.source.html" class="el_package">com.intive.rental</a> &gt; <span class="el_source">RentalApplicationConfiguration.java</span></div><h1>RentalApplicationConfiguration.java</h1><pre class="source lang-java linenums">package com.intive.rental;
 
-import com.intive.rental.dto.Rental;
+import com.intive.rental.dto.FamilyRental;
+import com.intive.rental.dto.SimpleRental;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,26 +12,36 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Properties;
 
 @Configuration
-<span class="fc" id="L13">public class RentalApplicationConfiguration {</span>
+<span class="fc" id="L15">public class RentalApplicationConfiguration {</span>
+
+    @Value(&quot;${spring.kafka.bootstrap-servers}&quot;)
+    private String KAFKA_SERVER_URL;
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-<span class="fc" id="L17">        return builder.build();</span>
+<span class="fc" id="L22">        return builder.build();</span>
     }
 
     @Bean
-    public KafkaProducer&lt;String, Rental&gt; kafkaProducer() {
-        //Aassuming the server is located in this url
-<span class="fc" id="L23">        String KAFKA_SERVER = &quot;localhost:9092&quot;;</span>
-<span class="fc" id="L24">        final Properties props = new Properties();</span>
-<span class="fc" id="L25">        props.put(&quot;bootstrap.servers&quot;, KAFKA_SERVER);</span>
-<span class="fc" id="L26">        props.put(&quot;key.serializer&quot;,</span>
+    public KafkaProducer&lt;String, SimpleRental&gt; kafkaProducer() {
+<span class="fc" id="L27">        return new org.apache.kafka.clients.producer.KafkaProducer&lt;&gt;(kafkaProperties());</span>
+    }
+
+    @Bean
+    public KafkaProducer&lt;String, FamilyRental&gt; kafkaFamilyProducer() {
+<span class="fc" id="L32">        return new org.apache.kafka.clients.producer.KafkaProducer&lt;&gt;(kafkaProperties());</span>
+    }
+
+    private Properties kafkaProperties() {
+<span class="fc" id="L36">        Properties props = new Properties();</span>
+<span class="fc" id="L37">        props.put(&quot;bootstrap.servers&quot;, KAFKA_SERVER_URL);</span>
+<span class="fc" id="L38">        props.put(&quot;key.serializer&quot;,</span>
                 &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
-<span class="fc" id="L28">        props.put(&quot;metadata.broker.list&quot;, KAFKA_SERVER);</span>
-<span class="fc" id="L29">        props.put(&quot;serializer.class&quot;, &quot;kafka.serializer.StringEncoder&quot;);</span>
-<span class="fc" id="L30">        props.put(&quot;value.serializer&quot;,</span>
+<span class="fc" id="L40">        props.put(&quot;metadata.broker.list&quot;, KAFKA_SERVER_URL);</span>
+<span class="fc" id="L41">        props.put(&quot;serializer.class&quot;,&quot;kafka.serializer.StringEncoder&quot;);</span>
+<span class="fc" id="L42">        props.put(&quot;value.serializer&quot;,</span>
                 &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
-<span class="fc" id="L32">        return new org.apache.kafka.clients.producer.KafkaProducer&lt;&gt;(props);</span>
+<span class="fc" id="L44">        return props;</span>
     }
 
 }

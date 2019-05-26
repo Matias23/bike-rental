@@ -1,4 +1,4 @@
-logging.level.com.vylla.rental: DEBUG
+logging.level.com.intive.rental: DEBUG
 
 server:
   port: 9000
@@ -9,9 +9,17 @@ spring:
     mongodb:
       uri: mongodb://192.168.99.100:27017/rental
   kafka:
-    bootstrap-servers: ${kafka.bootstrap.servers}
+    bootstrap-servers: http://127.0.0.1:9092
     producer:
       enabled: true
 
-kafka.bootstrap.servers: http://127.0.0.1:9092
+message:
+  responseStatus: Response status doesn't match
+  notThrown: Did not throw
+
+charge:
+  family: 0.3
+  hourly: 5
+  daily: 20
+  weekly: 60
 
