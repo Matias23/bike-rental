@@ -13,6 +13,8 @@ spring:
     producer:
       enabled: true
 
+baseUrl: http://localhost:%s/v1/rentals
+
 message:
   responseStatus: Response status doesn't match
   notThrown: Did not throw

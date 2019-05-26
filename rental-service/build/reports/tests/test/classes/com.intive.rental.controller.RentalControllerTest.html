@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.910s</div>
+<div class="counter">0.852s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,22 +79,22 @@
 </thead>
 <tr>
 <td class="success">createFamilyRental</td>
-<td class="success">0.011s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createFamilyRentalShortList</td>
-<td class="success">0.012s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createFamilyRentalWithNoRentalsList</td>
-<td class="success">0.036s</td>
+<td class="success">0.034s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createRentalLowAmountRequest</td>
-<td class="success">0.584s</td>
+<td class="success">0.562s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -104,12 +104,12 @@
 </tr>
 <tr>
 <td class="success">createSimpleRental</td>
-<td class="success">0.022s</td>
+<td class="success">0.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">dailyRentalCost</td>
-<td class="success">0.011s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -119,32 +119,32 @@
 </tr>
 <tr>
 <td class="success">getFamilyRentalNotFound</td>
-<td class="success">0.011s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getPort</td>
-<td class="success">0.008s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getRentalNotFound</td>
-<td class="success">0.037s</td>
+<td class="success">0.033s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getSimpleRental</td>
-<td class="success">0.023s</td>
+<td class="success">0.021s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">hourlyRentalCost</td>
-<td class="success">0.102s</td>
+<td class="success">0.086s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">weeklyRentalCost</td>
-<td class="success">0.013s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -152,29 +152,29 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>23:25:55.436 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.intive.rental.controller.RentalControllerTest]
-23:25:55.447 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-23:25:55.460 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-23:25:55.491 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.intive.rental.controller.RentalControllerTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-23:25:55.509 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.intive.rental.controller.RentalControllerTest], using SpringBootContextLoader
-23:25:55.514 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.intive.rental.controller.RentalControllerTest]: class path resource [com/intive/rental/controller/RentalControllerTest-context.xml] does not exist
-23:25:55.514 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.intive.rental.controller.RentalControllerTest]: class path resource [com/intive/rental/controller/RentalControllerTestContext.groovy] does not exist
-23:25:55.515 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.intive.rental.controller.RentalControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-23:25:55.516 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.intive.rental.controller.RentalControllerTest]: RentalControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:25:55.584 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.696 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\User\IdeaProjects\rental\rental-service\build\classes\java\main\com\intive\rental\RentalApplication.class]
-23:25:55.697 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.intive.rental.RentalApplication for test class com.intive.rental.controller.RentalControllerTest
-23:25:55.814 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.intive.rental.controller.RentalControllerTest]: using defaults.
-23:25:55.815 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-23:25:55.838 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7884e41b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@19556f89, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6c542feb, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@da19492, org.springframework.test.context.support.DirtiesContextTestExecutionListener@525a0d01, org.springframework.test.context.transaction.TransactionalTestExecutionListener@60c109e4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2da74960, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2ca35d42, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2e137fd2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4675dddd, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@510e603a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@67f16e14]
-23:25:55.841 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.842 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.843 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.843 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.848 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@25f4736f testClass = RentalControllerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@3a69fc83 testClass = RentalControllerTest, locations = '{}', classes = '{class com.intive.rental.RentalApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@212317e7, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@186313ac, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5da3d52c, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@fce5998c, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1876d7f8], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; false]], class annotated with @DirtiesContext [false] with mode [null].
-23:25:55.849 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.849 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
-23:25:55.879 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}
+<pre>15:29:56.804 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.intive.rental.controller.RentalControllerTest]
+15:29:56.820 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:29:56.839 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:29:56.888 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.intive.rental.controller.RentalControllerTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+15:29:56.916 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.intive.rental.controller.RentalControllerTest], using SpringBootContextLoader
+15:29:56.925 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.intive.rental.controller.RentalControllerTest]: class path resource [com/intive/rental/controller/RentalControllerTest-context.xml] does not exist
+15:29:56.926 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.intive.rental.controller.RentalControllerTest]: class path resource [com/intive/rental/controller/RentalControllerTestContext.groovy] does not exist
+15:29:56.926 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.intive.rental.controller.RentalControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:29:56.928 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.intive.rental.controller.RentalControllerTest]: RentalControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:29:57.064 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.236 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\User\IdeaProjects\rental\rental-service\build\classes\java\main\com\intive\rental\RentalApplication.class]
+15:29:57.239 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.intive.rental.RentalApplication for test class com.intive.rental.controller.RentalControllerTest
+15:29:57.424 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.intive.rental.controller.RentalControllerTest]: using defaults.
+15:29:57.425 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+15:29:57.453 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@46789843, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@79e39bb1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@31db2b8b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@26d8f4c7, org.springframework.test.context.support.DirtiesContextTestExecutionListener@24e0dadf, org.springframework.test.context.transaction.TransactionalTestExecutionListener@413bf3e1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@29d41f3e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@48cbb80f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6adfb5eb, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7465f7aa, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7d412bf7, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@68dfff90]
+15:29:57.458 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.459 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.459 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.460 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.471 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@23dc0382 testClass = RentalControllerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1fde09 testClass = RentalControllerTest, locations = '{}', classes = '{class com.intive.rental.RentalApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@449303bd, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3e85ed51, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@66f1f4f, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@a605b72a, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2fd75b54], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; false]], class annotated with @DirtiesContext [false] with mode [null].
+15:29:57.473 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.474 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.intive.rental.controller.RentalControllerTest]
+15:29:57.523 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -184,41 +184,41 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.3.RELEASE)
 
-2019-05-25 23:25:56.218  INFO 10184 --- [    Test worker] c.i.r.controller.RentalControllerTest    : Starting RentalControllerTest on User-PC with PID 10184 (started by User in C:\Users\User\IdeaProjects\rental\rental-service)
-2019-05-25 23:25:56.219  INFO 10184 --- [    Test worker] c.i.r.controller.RentalControllerTest    : No active profile set, falling back to default profiles: default
-2019-05-25 23:25:56.755  INFO 10184 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2019-05-25 23:25:56.828  INFO 10184 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67ms. Found 2 repository interfaces.
-2019-05-25 23:25:57.991  INFO 10184 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2019-05-25 23:25:58.020  INFO 10184 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-05-25 23:25:58.021  INFO 10184 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
-2019-05-25 23:25:58.035  INFO 10184 --- [    Test worker] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_211\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_211\bin;C:\Program Files\Git\cmd;C:\Gradle\gradle-5.4.1\bin;C:\Maven\apache-maven-3.6.1\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Docker Toolbox;.]
-2019-05-25 23:25:58.132  INFO 10184 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-05-25 23:25:58.132  INFO 10184 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1892 ms
-2019-05-25 23:25:58.904  INFO 10184 --- [    Test worker] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[192.168.99.100:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
-2019-05-25 23:25:58.977  INFO 10184 --- [68.99.100:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:77}] to 192.168.99.100:27017
-2019-05-25 23:25:58.980  INFO 10184 --- [68.99.100:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=192.168.99.100:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 9]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=1924600}
-2019-05-25 23:25:59.568  INFO 10184 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-05-25 23:25:59.816  INFO 10184 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 62549 (http) with context path ''
-2019-05-25 23:25:59.817  INFO 10184 --- [    Test worker] c.i.r.controller.RentalControllerTest    : Started RentalControllerTest in 3.936 seconds (JVM running for 5.255)
-2019-05-25 23:25:59.877  INFO 10184 --- [    Test worker] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:78}] to 192.168.99.100:27017
-2019-05-25 23:26:00.201  INFO 10184 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-05-25 23:26:00.201  INFO 10184 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-05-25 23:26:00.217  INFO 10184 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
-2019-05-25 23:26:00.355  WARN 10184 --- [o-auto-1-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.SimpleRental com.intive.rental.controller.RentalController.postSingleRental(com.intive.rental.dto.request.CreateSimpleRentalRequest): [Field error in object 'createSimpleRentalRequest' on field 'amount': rejected value [-2]; codes [Min.createSimpleRentalRequest.amount,Min.amount,Min.java.lang.Integer,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.amount,amount]; arguments []; default message [amount],1]; default message [amount should be greater than 0]] ]
-2019-05-25 23:26:00.419  INFO 10184 --- [o-auto-1-exec-2] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
-2019-05-25 23:26:00.547  WARN 10184 --- [o-auto-1-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.FamilyRental com.intive.rental.controller.RentalController.postFamilyRental(com.intive.rental.dto.request.CreateFamilyRentalRequest): [Field error in object 'createFamilyRentalRequest' on field 'rentals': rejected value [null]; codes [NotNull.createFamilyRentalRequest.rentals,NotNull.rentals,NotNull.java.util.List,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFamilyRentalRequest.rentals,rentals]; arguments []; default message [rentals]]; default message [rentals is required]] ]
-2019-05-25 23:26:00.559  WARN 10184 --- [o-auto-1-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.FamilyRental com.intive.rental.controller.RentalController.postFamilyRental(com.intive.rental.dto.request.CreateFamilyRentalRequest): [Field error in object 'createFamilyRentalRequest' on field 'rentals': rejected value [[]]; codes [Size.createFamilyRentalRequest.rentals,Size.rentals,Size.java.util.List,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFamilyRentalRequest.rentals,rentals]; arguments []; default message [rentals],5,3]; default message [rentals length must between 3 and 5]] ]
-2019-05-25 23:26:00.572  INFO 10184 --- [o-auto-1-exec-5] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)
-2019-05-25 23:26:00.589  INFO 10184 --- [o-auto-1-exec-6] c.i.rental.controller.RentalController   : Received new request for getting bike rental with id: invalid_id
-2019-05-25 23:26:00.635  INFO 10184 --- [o-auto-1-exec-9] c.i.rental.controller.RentalController   : Received new request for getting family bike rental with id: invalid_id
-2019-05-25 23:26:00.649  INFO 10184 --- [o-auto-1-exec-8] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
-2019-05-25 23:26:00.655  INFO 10184 --- [o-auto-1-exec-7] c.i.rental.controller.RentalController   : Received new request for getting bike rental with id: 5ce9f938dda04c27c8872cd0
-2019-05-25 23:26:00.673  INFO 10184 --- [-auto-1-exec-10] c.i.rental.controller.RentalController   : Received new request for saving family bike rental: CreateFamilyRentalRequest(rentals=[CreateSimpleRentalRequest(amount=4, rentalType=HOURLY), CreateSimpleRentalRequest(amount=1, rentalType=DAILY), CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)])
-2019-05-25 23:26:00.691  INFO 10184 --- [o-auto-1-exec-1] c.i.rental.controller.RentalController   : Received new request for getting family bike rental with id: 5ce9f938dda04c27c8872cd1
-2019-05-25 23:26:00.703  WARN 10184 --- [o-auto-1-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.SimpleRental com.intive.rental.controller.RentalController.postSingleRental(com.intive.rental.dto.request.CreateSimpleRentalRequest) with 2 errors: [Field error in object 'createSimpleRentalRequest' on field 'amount': rejected value [null]; codes [NotNull.createSimpleRentalRequest.amount,NotNull.amount,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.amount,amount]; arguments []; default message [amount]]; default message [amount is required]] [Field error in object 'createSimpleRentalRequest' on field 'rentalType': rejected value [null]; codes [NotNull.createSimpleRentalRequest.rentalType,NotNull.rentalType,NotNull.com.intive.rental.dto.constant.RentalType,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.rentalType,rentalType]; arguments []; default message [rentalType]]; default message [rentalType is required]] ]
-2019-05-25 23:26:00.713  INFO 10184 --- [o-auto-1-exec-4] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
-2019-05-25 23:26:00.737  INFO 10184 --- [o-auto-1-exec-3] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=1, rentalType=DAILY)
-2019-05-25 23:26:00.748  INFO 10184 --- [o-auto-1-exec-5] c.i.rental.controller.RentalController   : Received new request for saving family bike rental: CreateFamilyRentalRequest(rentals=[CreateSimpleRentalRequest(amount=4, rentalType=HOURLY), CreateSimpleRentalRequest(amount=1, rentalType=DAILY), CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)])
+2019-05-26 15:29:58.107  INFO 13252 --- [    Test worker] c.i.r.controller.RentalControllerTest    : Starting RentalControllerTest on User-PC with PID 13252 (started by User in C:\Users\User\IdeaProjects\rental\rental-service)
+2019-05-26 15:29:58.109  INFO 13252 --- [    Test worker] c.i.r.controller.RentalControllerTest    : No active profile set, falling back to default profiles: default
+2019-05-26 15:29:58.971  INFO 13252 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-05-26 15:29:59.089  INFO 13252 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106ms. Found 2 repository interfaces.
+2019-05-26 15:30:01.074  INFO 13252 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-05-26 15:30:01.123  INFO 13252 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-26 15:30:01.124  INFO 13252 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-05-26 15:30:01.149  INFO 13252 --- [    Test worker] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_211\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.8.0_211\bin;C:\Program Files\Git\cmd;C:\Gradle\gradle-5.4.1\bin;C:\Maven\apache-maven-3.6.1\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Docker Toolbox;.]
+2019-05-26 15:30:01.349  INFO 13252 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-26 15:30:01.350  INFO 13252 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3206 ms
+2019-05-26 15:30:02.594  INFO 13252 --- [    Test worker] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[192.168.99.100:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2019-05-26 15:30:02.681  INFO 13252 --- [68.99.100:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:4}] to 192.168.99.100:27017
+2019-05-26 15:30:02.685  INFO 13252 --- [68.99.100:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=192.168.99.100:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 9]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=null, roundTripTimeNanos=1511200}
+2019-05-26 15:30:03.309  INFO 13252 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-26 15:30:03.580  INFO 13252 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 63711 (http) with context path ''
+2019-05-26 15:30:03.583  INFO 13252 --- [    Test worker] c.i.r.controller.RentalControllerTest    : Started RentalControllerTest in 6.057 seconds (JVM running for 7.842)
+2019-05-26 15:30:03.645  INFO 13252 --- [    Test worker] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:5}] to 192.168.99.100:27017
+2019-05-26 15:30:03.949  INFO 13252 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-26 15:30:03.950  INFO 13252 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-05-26 15:30:03.966  INFO 13252 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2019-05-26 15:30:04.104  WARN 13252 --- [o-auto-1-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.SimpleRental com.intive.rental.controller.RentalController.postSingleRental(com.intive.rental.dto.request.CreateSimpleRentalRequest): [Field error in object 'createSimpleRentalRequest' on field 'amount': rejected value [-2]; codes [Min.createSimpleRentalRequest.amount,Min.amount,Min.java.lang.Integer,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.amount,amount]; arguments []; default message [amount],1]; default message [amount should be greater than 0]] ]
+2019-05-26 15:30:04.162  INFO 13252 --- [o-auto-1-exec-2] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
+2019-05-26 15:30:04.273  WARN 13252 --- [o-auto-1-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.FamilyRental com.intive.rental.controller.RentalController.postFamilyRental(com.intive.rental.dto.request.CreateFamilyRentalRequest): [Field error in object 'createFamilyRentalRequest' on field 'rentals': rejected value [null]; codes [NotNull.createFamilyRentalRequest.rentals,NotNull.rentals,NotNull.java.util.List,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFamilyRentalRequest.rentals,rentals]; arguments []; default message [rentals]]; default message [rentals is required]] ]
+2019-05-26 15:30:04.284  WARN 13252 --- [o-auto-1-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.FamilyRental com.intive.rental.controller.RentalController.postFamilyRental(com.intive.rental.dto.request.CreateFamilyRentalRequest): [Field error in object 'createFamilyRentalRequest' on field 'rentals': rejected value [[]]; codes [Size.createFamilyRentalRequest.rentals,Size.rentals,Size.java.util.List,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createFamilyRentalRequest.rentals,rentals]; arguments []; default message [rentals],5,3]; default message [rentals length must between 3 and 5]] ]
+2019-05-26 15:30:04.295  INFO 13252 --- [o-auto-1-exec-5] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)
+2019-05-26 15:30:04.310  INFO 13252 --- [o-auto-1-exec-6] c.i.rental.controller.RentalController   : Received new request for getting bike rental with id: invalid_id
+2019-05-26 15:30:04.351  INFO 13252 --- [o-auto-1-exec-7] c.i.rental.controller.RentalController   : Received new request for getting family bike rental with id: invalid_id
+2019-05-26 15:30:04.363  INFO 13252 --- [o-auto-1-exec-8] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
+2019-05-26 15:30:04.368  INFO 13252 --- [o-auto-1-exec-9] c.i.rental.controller.RentalController   : Received new request for getting bike rental with id: 5ceadb2cdda04c33c4ae3c8e
+2019-05-26 15:30:04.386  INFO 13252 --- [-auto-1-exec-10] c.i.rental.controller.RentalController   : Received new request for saving family bike rental: CreateFamilyRentalRequest(rentals=[CreateSimpleRentalRequest(amount=4, rentalType=HOURLY), CreateSimpleRentalRequest(amount=1, rentalType=DAILY), CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)])
+2019-05-26 15:30:04.405  INFO 13252 --- [o-auto-1-exec-1] c.i.rental.controller.RentalController   : Received new request for getting family bike rental with id: 5ceadb2cdda04c33c4ae3c8f
+2019-05-26 15:30:04.418  WARN 13252 --- [o-auto-1-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.intive.rental.dto.SimpleRental com.intive.rental.controller.RentalController.postSingleRental(com.intive.rental.dto.request.CreateSimpleRentalRequest) with 2 errors: [Field error in object 'createSimpleRentalRequest' on field 'rentalType': rejected value [null]; codes [NotNull.createSimpleRentalRequest.rentalType,NotNull.rentalType,NotNull.com.intive.rental.dto.constant.RentalType,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.rentalType,rentalType]; arguments []; default message [rentalType]]; default message [rentalType is required]] [Field error in object 'createSimpleRentalRequest' on field 'amount': rejected value [null]; codes [NotNull.createSimpleRentalRequest.amount,NotNull.amount,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [createSimpleRentalRequest.amount,amount]; arguments []; default message [amount]]; default message [amount is required]] ]
+2019-05-26 15:30:04.428  INFO 13252 --- [o-auto-1-exec-3] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=4, rentalType=HOURLY)
+2019-05-26 15:30:04.444  INFO 13252 --- [o-auto-1-exec-4] c.i.rental.controller.RentalController   : Received new request for saving simple bike rental: CreateSimpleRentalRequest(amount=1, rentalType=DAILY)
+2019-05-26 15:30:04.457  INFO 13252 --- [o-auto-1-exec-5] c.i.rental.controller.RentalController   : Received new request for saving family bike rental: CreateFamilyRentalRequest(rentals=[CreateSimpleRentalRequest(amount=4, rentalType=HOURLY), CreateSimpleRentalRequest(amount=1, rentalType=DAILY), CreateSimpleRentalRequest(amount=1, rentalType=WEEKLY)])
 </pre>
 </span>
 </div>
@@ -230,7 +230,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.4.1</a> at May 25, 2019 11:26:01 PM</p>
+<a href="http://www.gradle.org">Gradle 5.4.1</a> at May 26, 2019 3:30:05 PM</p>
 </div>
 </div>
 </body>

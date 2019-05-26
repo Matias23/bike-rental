@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2019-05-25T23:26:02.523">
+<pmd version="4.3" timestamp="2019-05-26T15:30:06.022">
 <error filename="C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\RentalApplication.java" msg="Error while parsing C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\RentalApplication.java"/>
 <error filename="C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\RentalApplicationConfiguration.java" msg="Error while parsing C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\RentalApplicationConfiguration.java"/>
 <error filename="C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\controller\RentalController.java" msg="Error while parsing C:\Users\User\IdeaProjects\rental\rental-service\src\main\java\com\intive\rental\controller\RentalController.java"/>
